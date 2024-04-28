@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
 import TabButton from './TabButton'
-import { EXAMPLES } from '../data' 
+import { EXAMPLES } from '../data'
+import Section from './Section';
 
 export default function Examples() {
 
@@ -27,30 +28,29 @@ export default function Examples() {
     }
 
   return (
-    <section id="examples">
-          <h2>Examples</h2>
+    <Section id="examples" title="Examples" >
           <menu>
             <TabButton
               isSelected={selectedTopic === "components"}
-              onSelect={() => handleSelect("components")}
+              onClick={() => handleSelect("components")}
             >
               Components
             </TabButton>
             <TabButton
               isSelected={selectedTopic === "jsx"}
-              onSelect={() => handleSelect("jsx")}
+              onClick={() => handleSelect("jsx")}
             >
               JSX
             </TabButton>
             <TabButton
               isSelected={selectedTopic === "props"}
-              onSelect={() => handleSelect("props")}
+              onClick={() => handleSelect("props")}
             >
               Props
             </TabButton>
             <TabButton
               isSelected={selectedTopic === "state"}
-              onSelect={() => handleSelect("state")}
+              onClick={() => handleSelect("state")}
             >
               State
             </TabButton>
@@ -81,6 +81,6 @@ export default function Examples() {
           {/* Third way of rendering content conditionally using variable and
            a if block outside of return statement(scroll up) */}
           {tableContent}
-        </section>
+        </Section>
   )
 }
