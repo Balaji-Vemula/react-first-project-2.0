@@ -30,7 +30,7 @@ export default function Examples() {
   return (
     <Section id="examples" title="Examples">
       <Tabs
-        ButtonsContainer="menu" //For inbuilt tags
+        // ButtonsContainer="menu" //For inbuilt tags
         // ButtonsContainer={Section} //For Components
         buttonJSX={
           <>
