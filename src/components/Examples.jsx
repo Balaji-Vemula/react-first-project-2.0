@@ -1,36 +1,38 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import TabButton from './TabButton'
-import Tabs from './Tabs';
-import { EXAMPLES } from '../data'
-import Section from './Section';
+import TabButton from "./TabButton";
+import Tabs from "./Tabs";
+import { EXAMPLES } from "../data";
+import Section from "./Section";
 
 export default function Examples() {
+  const [selectedTopic, setSelectedTopic] = useState();
 
-    const [selectedTopic, setSelectedTopic] = useState();
+  function handleSelect(selectedButton) {
+    // selectedButton => 'components', 'jsx', 'props', 'state'
+    setSelectedTopic(selectedButton);
+    // console.log(selectedTopic)
+  }
 
-    function handleSelect(selectedButton) {
-      // selectedButton => 'components', 'jsx', 'props', 'state'
-      setSelectedTopic(selectedButton);
-      // console.log(selectedTopic)
-    }
-  
-    let tabContent = <p>Please select a topic.</p>;
-    if (selectedTopic) {
-      tabContent = (
-        <div id="tab-content">
-          <h3>{EXAMPLES[selectedTopic].title}</h3>
-          <p>{EXAMPLES[selectedTopic].description}</p>
-          <pre>
-            <code>{EXAMPLES[selectedTopic].code}</code>
-          </pre>
-        </div>
-      );
-    }
+  let tabContent = <p>Please select a topic.</p>;
+  if (selectedTopic) {
+    tabContent = (
+      <div id="tab-content">
+        <h3>{EXAMPLES[selectedTopic].title}</h3>
+        <p>{EXAMPLES[selectedTopic].description}</p>
+        <pre>
+          <code>{EXAMPLES[selectedTopic].code}</code>
+        </pre>
+      </div>
+    );
+  }
 
   return (
-    <Section id="examples" title="Examples" >
-      <Tabs buttonJSX={<><TabButton
+    <Section id="examples" title="Examples">
+      <Tabs
+        buttonJSX={
+          <>
+            <TabButton
               isSelected={selectedTopic === "components"}
               onClick={() => handleSelect("components")}
             >
@@ -53,12 +55,15 @@ export default function Examples() {
               onClick={() => handleSelect("state")}
             >
               State
-            </TabButton> </>}>
+            </TabButton>{" "}
+          </>
+        }
+      >
         {tabContent}
       </Tabs>
-          
-          {/* first way of rendering content conditionally using ternary operator */}
-          {/* {!selectedTopic ? (
+
+      {/* first way of rendering content conditionally using ternary operator */}
+      {/* {!selectedTopic ? (
             <p>Please select a topic.</p>
           ) : (
             <div id="tab-content">
@@ -69,8 +74,8 @@ export default function Examples() {
               </pre>
             </div>
           )} */}
-          {/* Second way of rendering content conditionally using && */}
-          {/* {!selectedTopic && <p>Please select a topic.</p>}
+      {/* Second way of rendering content conditionally using && */}
+      {/* {!selectedTopic && <p>Please select a topic.</p>}
           {selectedTopic && (
             <div id="tab-content">
               <h3>{EXAMPLES[selectedTopic].title}</h3>
@@ -80,9 +85,9 @@ export default function Examples() {
               </pre>
             </div>
           )} */}
-          {/* Third way of rendering content conditionally using variable and
+      {/* Third way of rendering content conditionally using variable and
            a if block outside of return statement(scroll up) */}
-          {/* {tabContent} */}
-        </Section>
-  )
+      {/* {tabContent} */}
+    </Section>
+  );
 }

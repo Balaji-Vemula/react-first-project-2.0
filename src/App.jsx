@@ -1,4 +1,4 @@
-import { Fragment} from "react";
+import { Fragment } from "react";
 
 import Header from "./components/Header/Header";
 import CoreConcepts from "./components/CoreConcepts";
