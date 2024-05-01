@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import TabButton from './TabButton'
+import Tabs from './Tabs';
 import { EXAMPLES } from '../data'
 import Section from './Section';
 
@@ -14,9 +15,9 @@ export default function Examples() {
       // console.log(selectedTopic)
     }
   
-    let tableContent = <p>Please select a topic.</p>;
+    let tabContent = <p>Please select a topic.</p>;
     if (selectedTopic) {
-      tableContent = (
+      tabContent = (
         <div id="tab-content">
           <h3>{EXAMPLES[selectedTopic].title}</h3>
           <p>{EXAMPLES[selectedTopic].description}</p>
@@ -29,8 +30,7 @@ export default function Examples() {
 
   return (
     <Section id="examples" title="Examples" >
-          <menu>
-            <TabButton
+      <Tabs buttonJSX={<><TabButton
               isSelected={selectedTopic === "components"}
               onClick={() => handleSelect("components")}
             >
@@ -53,8 +53,10 @@ export default function Examples() {
               onClick={() => handleSelect("state")}
             >
               State
-            </TabButton>
-          </menu>
+            </TabButton> </>}>
+        {tabContent}
+      </Tabs>
+          
           {/* first way of rendering content conditionally using ternary operator */}
           {/* {!selectedTopic ? (
             <p>Please select a topic.</p>
@@ -80,7 +82,7 @@ export default function Examples() {
           )} */}
           {/* Third way of rendering content conditionally using variable and
            a if block outside of return statement(scroll up) */}
-          {tableContent}
+          {/* {tabContent} */}
         </Section>
   )
 }
